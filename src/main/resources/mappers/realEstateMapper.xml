@@ -16,8 +16,8 @@
 		,`updatedAt`
 	FROM
 		`real_estate`
-	WHERE
-		`rentPrice`  #{rentPrice}
+	<!-- WHERE
+		`rentPrice`  #{rentPrice} -->
  	</select>
  	
  	<select id="selectRealEstatePrice" parameterType="int" resultType="com.quiz.lesson03.model.RealEstate">
@@ -104,7 +104,7 @@
 			, #{area}
 			, #{type}
 			, #{price}
-			, #{rentPrice)
+			, #{rentPrice}
 			, NOW()
 			, NOW()
 		)

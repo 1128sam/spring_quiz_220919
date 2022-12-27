@@ -1,8 +1,8 @@
 package com.quiz.lesson03;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.quiz.lesson03.bo.RealEstateBO;
@@ -26,11 +26,10 @@ public class Lesson03Quiz02RestController {
 		int row = realEstateBO.addRealEstate(estate);
 		return "입력 성공: " + row;
 	}
-	
+	// @RequestParam(value="id", defaultValue="1") int id // 비필수 파라미터, default value가 1, null 가능하지만 null이라면 default value로
 	@RequestMapping("/2")
-	public String quiz02_2(@Param("realtor_id") int realtorId) {
-		int temp = realtorId;
-		int row = realEstateBO.addRealEstateAsField(temp, "썅떼빌리버 오피스텔 814호", 45, "월세", 100000, 120);
+	public String quiz02_2(@RequestParam("realtor_id") int realtorId) {
+		int row = realEstateBO.addRealEstateAsField(realtorId, "썅떼빌리버 오피스텔 813호", 45, "월세", 100000, 120);
 		return "입력 성공 : " + row;
 	}
 }
