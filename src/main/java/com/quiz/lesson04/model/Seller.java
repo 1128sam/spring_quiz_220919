@@ -3,12 +3,20 @@ package com.quiz.lesson04.model;
 import java.util.Date;
 
 public class Seller {
-
+	private int id;
 	private String nickname;
-	private String profileUrl;
+	private String profileImageUrl;
 	private Double temperature;
 	private Date createdAt;
 	private Date updatedAt;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public String getNickname() {
 		return nickname;
@@ -18,12 +26,12 @@ public class Seller {
 		this.nickname = nickname;
 	}
 
-	public String getProfileUrl() {
-		return profileUrl;
+	public String getProfileImageUrl() {
+		return profileImageUrl;
 	}
 
-	public void setProfileUrl(String profileUrl) {
-		this.profileUrl = profileUrl;
+	public void setProfileImageUrl(String profileImageUrl) {
+		this.profileImageUrl = profileImageUrl;
 	}
 
 	public Double getTemperature() {

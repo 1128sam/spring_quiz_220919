@@ -7,7 +7,7 @@
  		INSERT INTO `seller`
  		(
  			`nickname`
-			, `profileUrl`
+			, `profileImageUrl`
 			, `temperature`
 			, `createdAt`
 			, `updatedAt`
@@ -15,10 +15,37 @@
  		VALUES
  		(
  			#{nickname}
- 			, #{profileUrl}
+ 			, #{profileImageUrl}
  			, #{temperature}
  			, NOW()
  			, NOW()
  		)
  	</insert>
+ 	
+ 	<select id="selectLatestSeller" resultType="com.quiz.lesson04.model.Seller">
+ 		SELECT
+ 			`id`
+ 			, `nickname`
+			, `profileImageUrl`
+			, `temperature`
+			, `createdAt`
+			, `updatedAt`
+ 		FROM
+ 			`seller`
+ 		order by `id` desc limit 1
+ 	</select>
+
+ 	<select id="selectSellerById" parameterType="int" resultType="com.quiz.lesson04.model.Seller">
+ 		SELECT
+ 			`id`
+ 			, `nickname`
+			, `profileImageUrl`
+			, `temperature`
+			, `createdAt`
+			, `updatedAt`
+ 		FROM
+ 			`seller`
+ 		WHERE
+ 			`id` = #{id}
+ 	</select>
  </mapper>
