@@ -186,4 +186,10 @@ public class Lesson05Controller {
 
 		return "lesson05/quiz04";
 	}
+
+	// http://localhost:8080/lesson05/quiz05
+	@GetMapping("/quiz05")
+	public String quiz05() {
+		return "lesson05/quiz05";
+	}
 }
