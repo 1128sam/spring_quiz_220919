@@ -3,7 +3,9 @@ body {}
 aside {
 	background-color: #6495ec;
 }
-section {min-height: 600px;}
+section {min-height: 400px;}
 .logo {
 	height: 50px;
 }
+
+.btn {width: 65px;}

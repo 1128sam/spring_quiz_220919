@@ -16,7 +16,6 @@
 <link rel="stylesheet" type="text/css" href="/css/lesson05/style.css">
 </head>
 <body>
-<img src="/img/lesson05/sunny.jpg">
 <div class="container">
 	<h1>회원 정보 리스트</h1>
 	<table class="table text-center">

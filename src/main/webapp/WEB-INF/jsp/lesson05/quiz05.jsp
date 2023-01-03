@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,67 +19,14 @@
 <div class="container">
 	<section class="id d-flex">
 		<aside class="col-2">
-			<div class="d-flex logo justify-content-center pt-3 mb-5">
-				<img src="https://www.kma.go.kr/kma/resources/images/sub/sig2.png" alt="기상청 logo" height="30">
-			</div>
-			<ul class="nav">
-	            <li class="nav-item font-weight-bold"><a href="#" class="nav-link text-white">날씨</a></li>
-	            <li class="nav-item font-weight-bold"><a href="#" class="nav-link text-white">날씨입력</a></li>
-	            <li class="nav-item font-weight-bold"><a href="#" class="nav-link text-white">테마날씨</a></li>
-	            <li class="nav-item font-weight-bold"><a href="#" class="nav-link text-white">관측 기후</a></li>
-	        </ul>
+			<jsp:include page="quiz05_nav.jsp" />
 		</aside>
 		<div class="col-10 h-100 pt-3">
-			<h2>과거 날씨</h2>
-			<table class="table text-center">
-				<thead>
-					<tr>
-						<th>날짜</th>
-						<th>날씨</th>
-						<th>기온</th>
-						<th>강수량</th>
-						<th>미세먼지</th>
-						<th>풍속</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>2015-11-22</td>
-						<td><img src="/img/lesson05/sunny.jpg"></td>
-						<td>21.9</td>
-						<td>83.5mm</td>
-						<td>보통</td>
-						<td>2.9km/h</td>
-					</tr>
-					<tr>
-						<td>2015-11-22</td>
-						<td><img src="/img/lesson05/sunny.jpg"></td>
-						<td>21.9</td>
-						<td>83.5mm</td>
-						<td>보통</td>
-						<td>2.9km/h</td>
-					</tr>
-					<tr>
-						<td>2015-11-22</td>
-						<td><img src="/img/lesson05/sunny.jpg"></td>
-						<td>21.9</td>
-						<td>83.5mm</td>
-						<td>보통</td>
-						<td>2.9km/h</td>
-					</tr>
-				</tbody>
-			</table>
-			<hr>
+			<jsp:include page="quiz05_section.jsp" />
 		</div>
 	</section>
 		<footer class="d-flex">
-			<div class="col-2 d-flex justify-content-center align-items-center logo">
-				<img src="https://www.kma.go.kr/kma/resources/images/sub/sig2.png" alt="기상청 흑백 logo" height="30">
-			</div>
-			<div class="col-10 text-secondary pt-2 pl-5">
-				<small>(07062) 서울시 동작구 여의대방로16길 61</small><br>
-				<small>Copyright@2020 KMA. All Rights RESERVED.</small>
-			</div>
+			<jsp:include page="quiz05_footer.jsp" />
 		</footer>
 </div>
 </body>

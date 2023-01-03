@@ -30,8 +30,8 @@ public class Lesson04Quiz02Controller {
 		// db insert
 		realtorBO.addRealtor(realtor);
 
-		// 방금 인서트되노 정보 가져오기 (DB select)
-		realtorBO.getRealtorById(realtor);
+		// 방금 인서트된 정보 가져오기 (DB select)
+//		realtorBO.getRealtorById(realtor);
 		System.out.println("realtor ID : " + realtor.getId());
 
 		// model
