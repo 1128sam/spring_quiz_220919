@@ -52,8 +52,9 @@
 				if (address.length < 1) {
 					alert("사이트 주소를 입력하세요.");
 					return;
-				} else if (address.startsWith("http") != true) {
+				} else if (address.startsWith("http") == false) {
 					alert("http 또는 https로 시작하는 주소를 입력하세요.")
+					return;
 				}
 				
 				// AJAX
@@ -66,11 +67,11 @@
 					// Response
 					, success:function(data) {
 						alert(data);
-						location.href = "/lesson06/quiz01/after_add_favorite_view";
+						location.href = "/lesson06/quiz01/favorite_list";
 					}
-					, complete:function(data) {
+					/* , complete:function(data) {
 						alert("완료");
-					}
+					} */
 					, error:function(e) {
 						alert("error");
 					}

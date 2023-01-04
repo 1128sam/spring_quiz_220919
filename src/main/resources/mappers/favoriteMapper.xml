@@ -19,4 +19,15 @@
   			, NOW()
   		)
   	</insert>
+  	
+  	<select id="selectBookmarkList" resultType="com.quiz.lesson06.model.Favorite">
+  		SELECT
+  			`id`
+			, `name`
+			, `address`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`bookmark`
+  	</select>
   </mapper>
