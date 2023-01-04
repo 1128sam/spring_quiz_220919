@@ -52,7 +52,7 @@
 				if (address.length < 1) {
 					alert("사이트 주소를 입력하세요.");
 					return;
-				} else if (address.startsWith("http") == false) {
+				} else if (address.startsWith("http") == false || address.startsWith("https") == false) {
 					alert("http 또는 https로 시작하는 주소를 입력하세요.")
 					return;
 				}
