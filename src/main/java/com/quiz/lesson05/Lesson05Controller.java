@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -196,7 +197,6 @@ public class Lesson05Controller {
 		return "lesson05/quiz04";
 	}
 
-	int id = 14;
 	@Autowired
 	private WeatherBO weatherBO;
 	// http://localhost:8080/lesson05/quiz05
@@ -231,5 +231,24 @@ public class Lesson05Controller {
 		List<WeatherHistory> historyList = weatherBO.getWeatherHistoryList();
 		model.addAttribute("historyList", historyList);
 		return "redirect:/lesson05/quiz05";
+		
+	}
+	
+	@PostMapping("quiz05/add")
+	public String addWeather(
+//			@RequestParam("date") @DateTimeFormat(pattern="yyyy-MM-dd") Date date, 
+			@RequestParam("date") String date, // String으로 인서트를 햏도 DB에서는 date타입으로 잘 저장된 
+			@RequestParam("weather") String weather, 
+			@RequestParam("microDust") String microDust, 
+			@RequestParam("temperatures") double temperatures, 
+			@RequestParam("precipitation") double precipitation, 
+			@RequestParam("windSpeed") double windSpeed
+//			, HttpServletResponse response
+			) {
+		
+		// DB insert
+		
+
+		response.sendRedirect("/lesson05/quiz05");
 	}
 }

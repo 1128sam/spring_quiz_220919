@@ -36,26 +36,26 @@
  	
  	<insert id="insertWeather" parameterType="com.quiz.lesson05.model.WeatherHistory">
  		INSERT INTO `weather_history`
-			(
-				`date`
-				, `weather`
-				, `temperatures`
-				, `precipitation`
-				, `microDust`
-				, `windSpeed`
-				, `createdAt`
-				, `updatedAt`
-			)
+		(
+			`date`
+			, `weather`
+			, `temperatures`
+			, `precipitation`
+			, `microDust`
+			, `windSpeed`
+			, `createdAt`
+			, `updatedAt`
+		)
 		VALUES
-			(
-				#{date}
-				, #{weather}
-				, #{temperatures}
-				, #{precipitation}
-				, #{microDust}
-				, #{windSpeed}
-				, NOW()
-				, NOW()
-			)
+		(
+			#{date}
+			, #{weather}
+			, #{temperatures}
+			, #{precipitation}
+			, #{microDust}
+			, #{windSpeed}
+			, NOW()
+			, NOW()
+		)
  	</insert>
  </mapper>
