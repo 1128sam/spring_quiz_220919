@@ -1,11 +1,17 @@
 @charset "UTF-8";
-body {}
+
 aside {
 	background-color: #6495ec;
 }
-section {min-height: 400px;}
+
+section {
+	min-height: 300px;
+}
+
 .logo {
 	height: 50px;
 }
 
-.btn {width: 65px;}
+.btn {
+	width: 65px;
+}

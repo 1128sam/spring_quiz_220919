@@ -1,6 +1,9 @@
 package com.quiz.lesson05;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.quiz.lesson05.bo.WeatherBO;
 import com.quiz.lesson05.model.Member;
@@ -218,8 +222,14 @@ public class Lesson05Controller {
 	}
 	
 	@PostMapping("/quiz05_after_add")
-	public String quiz05_2(@ModelAttribute WeatherHistory weather, Model model) {
+	public String quiz05_2(@ModelAttribute WeatherHistory weather, @RequestParam("date1") String date, Model model) throws ParseException {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date date0 = sdf.parse(date);
+		weather.setDate(date0);
 		weatherBO.addWeather(weather);
-		return "lesson05/quiz05";
+
+		List<WeatherHistory> historyList = weatherBO.getWeatherHistoryList();
+		model.addAttribute("historyList", historyList);
+		return "redirect:/lesson05/quiz05";
 	}
 }
