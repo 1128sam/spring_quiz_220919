@@ -12,4 +12,6 @@ public interface FavoriteDAO {
 	public void insertBookmark(@Param("name") String name, @Param("address") String address);
 	
 	public List<Favorite> selectBookmarkList();
+	
+	public boolean existBookmarkByAddress(String address);
 }

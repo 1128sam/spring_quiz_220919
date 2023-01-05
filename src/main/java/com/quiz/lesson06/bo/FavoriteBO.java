@@ -20,4 +20,8 @@ public class FavoriteBO {
 	public List<Favorite> getBookmarkList() {
 		return favoriteDAO.selectBookmarkList();
 	}
+	
+	public boolean existBookmarkByAddress(String address) {
+		return favoriteDAO.existBookmarkByAddress(address);
+	}
 }

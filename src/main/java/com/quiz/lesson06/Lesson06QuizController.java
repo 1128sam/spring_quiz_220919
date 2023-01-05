@@ -1,6 +1,8 @@
 package com.quiz.lesson06;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,7 +29,7 @@ public class Lesson06QuizController {
 		return "lesson06/quiz01/addFavorite";
 	}
 	
-	@ResponseBody
+	@ResponseBody // AJAX 통신 요청이 있으면 @ResponseBody가 필요함
 	@PostMapping("/quiz01/add_favorite")
 	public String addBookmark(
 			@RequestParam("name") String name,
@@ -35,6 +37,10 @@ public class Lesson06QuizController {
 			) {
 		favoriteBO.addBookmark(name, address);
 		return "즐겨찾기 추가가 완료되었습니다.";
+		
+//		Map<String, String> result = new HashMap<>();
+//		result.put("result", "성공");
+//		return result;
 	}
 	
 	@GetMapping("/quiz01/after_add_favorite_view")
@@ -48,5 +54,13 @@ public class Lesson06QuizController {
 		List<Favorite> bookmarkList = favoriteBO.getBookmarkList();
 		model.addAttribute("bookmarkList", bookmarkList);
 		return "lesson06/quiz01/favoriteList";
+	}
+	
+	@ResponseBody
+	@GetMapping("/quiz02/is_duplication")
+	public Map<String, Boolean> isDuplication(@RequestParam("address") String address) {
+		Map<String, Boolean> result = new HashMap<>();
+		result.put("is_duplication", favoriteBO.existBookmarkByAddress(address));
+		return result;
 	}
 }

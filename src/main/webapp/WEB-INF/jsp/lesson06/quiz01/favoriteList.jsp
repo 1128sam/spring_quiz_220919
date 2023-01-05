@@ -43,7 +43,12 @@
 			<tr>
 				<td>${status.count}</td>
 				<td>${bookmark.name}</td>
-				<td>${bookmark.address}</td>
+				<td>
+					<a href="${bookmark.address}">${bookmark.address}</a>
+					<div class="d-flex justify-content-end m-4">
+						<input type="button" class="btn btn-danger" value="삭제">
+					</div>
+				</td>
 			</tr>
 		</c:forEach>
 		</tbody>

@@ -30,4 +30,13 @@
 		FROM
 			`bookmark`
   	</select>
+  	
+  	<select id="existBookmarkByAddress" parameterType="string" resultType="boolean">
+  		SELECT
+  			count(*)
+  		FROM
+  			`bookmark`
+  		where
+  			`address` = #{address}
+  	</select>
   </mapper>
