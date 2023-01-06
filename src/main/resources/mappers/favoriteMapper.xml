@@ -40,8 +40,11 @@
   			`address` = #{address}
   	</select>
   	
-  	<delete id="deleteBookmark" parameterType="int">
-  		DELETE FROM `bookmark`
-  		WHERE `id` = #{id}
+  	<delete id="deleteFavoriteById" parameterType="int">
+  		DELETE
+  		FROM 
+  			`bookmark`
+  		WHERE 
+  			`id` = #{id}
   	</delete>
   </mapper>

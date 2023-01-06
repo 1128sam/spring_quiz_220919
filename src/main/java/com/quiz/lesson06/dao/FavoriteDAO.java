@@ -13,7 +13,9 @@ public interface FavoriteDAO {
 	
 	public List<Favorite> selectBookmarkList();
 	
-	public boolean existBookmarkByAddress(String address);
+	public Favorite existBookmarkByAddress(String address);
 	
 	public void deleteBookmark(int id);
+	
+	public int deleteFavoriteById(int id);
 }

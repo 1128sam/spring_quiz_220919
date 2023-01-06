@@ -234,21 +234,21 @@ public class Lesson05Controller {
 		
 	}
 	
-	@PostMapping("quiz05/add")
-	public String addWeather(
-//			@RequestParam("date") @DateTimeFormat(pattern="yyyy-MM-dd") Date date, 
-			@RequestParam("date") String date, // String으로 인서트를 햏도 DB에서는 date타입으로 잘 저장된 
-			@RequestParam("weather") String weather, 
-			@RequestParam("microDust") String microDust, 
-			@RequestParam("temperatures") double temperatures, 
-			@RequestParam("precipitation") double precipitation, 
-			@RequestParam("windSpeed") double windSpeed
-//			, HttpServletResponse response
-			) {
-		
-		// DB insert
-		
-
-		response.sendRedirect("/lesson05/quiz05");
-	}
+//	@PostMapping("quiz05/add")
+//	public String addWeather(
+////			@RequestParam("date") @DateTimeFormat(pattern="yyyy-MM-dd") Date date, 
+//			@RequestParam("date") String date, // String으로 인서트를 햏도 DB에서는 date타입으로 잘 저장된 
+//			@RequestParam("weather") String weather, 
+//			@RequestParam("microDust") String microDust, 
+//			@RequestParam("temperatures") double temperatures, 
+//			@RequestParam("precipitation") double precipitation, 
+//			@RequestParam("windSpeed") double windSpeed
+////			, HttpServletResponse response
+//			) {
+//		
+//		// DB insert
+//		
+//
+//		response.sendRedirect("/lesson05/quiz05");
+//	}
 }

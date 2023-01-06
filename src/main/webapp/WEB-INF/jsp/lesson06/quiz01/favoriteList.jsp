@@ -41,13 +41,19 @@
 		<tbody>
 		<c:forEach var="bookmark" items="${bookmarkList}" varStatus="status">
 			<tr>
-				<td>${status.count}</td>
+				<td>${bookmark.id}</td>
 				<td>${bookmark.name}</td>
-				<td class="d-flex">
-						<span class="mr-5"><a href="${bookmark.address}">${bookmark.address}</a></span>
-						<div class="d-flex justify-content-end bg-secondary">
-							<input type="button" class="btn btn-danger" id="${bookmark.id}" value="삭제">
-						</div>
+				<td>${bookmark.address}</td>
+				<td>
+					<!-- <input type="hidden" value=""> -->
+					<%-- 1) name속성 + value속성 삭제 --%>
+					<%-- <button type="button" name="delBtn" class="del-btn btn btn-danger" value="${bookmark.id}">삭제</button> --%>
+					
+				<%-- <input type="button" class="btn btn-danger" id="${bookmark.id}" value="삭제">
+					<c:set var="last" value="${bookmark.id}" /> --%>
+					
+					<!-- 2) data를 이용해 tag에 임시저장하기 -->
+					<button type="button" class="del-btn btn btn-danger" data-bookmark-id="${bookmark.id}">삭제</button> <!-- data-뒤에 대문자가 안됨!!(_도) -->
 				</td>
 			</tr>
 		</c:forEach>
@@ -56,9 +62,38 @@
 </div>
 <script>
 	$(document).ready(function() {
-		$('').on('click', function() {
+			// 1) name속성 + value속성 삭제
+			/* $('button[name=delBtn]').on('click', function(e) {
+				// let id = $(this).val();
+				// let id = $(this).attr('value');
+				let id = e.target.value; // target = 선택된
+				alert(id);
+			}); */
 			
-		});
+			// 2) data를 이용해 tag에 임시저장하기
+			// 태그 : data-favorite-id	data- 뒤에 우리가 이름을 정한다.(대문자 절대 안됨)
+			// script: $(this).data('favorite-id');
+			$('.del-btn').on('click', function() {
+				let id = $(this).data('bookmark-id');
+			});
+			
+			$.ajax({
+				type:"delete"
+				, url:"/lesson06/quiz02/delete_favorite"
+				, data: {"id":id}
+
+				, success:function(data) {
+					if (data.code == 1) {
+						// 성공
+						document.location.reload(true); // 새로고침, 안되면 앞에 window.이나 document.을 붙이면 될 듯
+					} else if (data.code == 500) {
+						alert(data.error_message);
+					}
+				}
+				, error:function(e) {
+					alert("error " + e);
+				}
+			});
 	});
 </script>
 </body>

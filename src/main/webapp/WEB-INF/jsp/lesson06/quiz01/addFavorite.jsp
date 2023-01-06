@@ -32,13 +32,14 @@
 		<input type="text" id="name" name="name" class="form-control w-100" placeholder="사이트 이름을 입력하세요.">
 		<small id="nameStatusArea"></small>
 	</div>
-	<div class="pt-2 pb-4">
+	<div class="pt-2 pb-4 form-group">
 		<label for="address">주소</label>
 		<div class="d-flex">
 			<input type="text" id="address" name="address" class="form-control col-10 mr-5" placeholder="사이트 주소를 입력하세요.">
 			<button type="button" class="btn btn-info ml-5" id="checkBtn">중복 확인</button>
 		</div>
 		<small id="urlStatusArea"></small>
+		<!-- <small id="urlStatusArea" class="text-info d-none"></small> -->
 	</div>
 	<div class="pt-2">
 		<input type="button" id="insertBtn" class="btn btn-success" value="추가">
@@ -58,7 +59,7 @@
 				if (address.length < 1) {
 					alert("사이트 주소를 입력하세요.");
 					return;
-				} else if (address.startsWith('http') == false || address.startsWith("https") == false) {
+				} else if (address.startsWith('http') == false && address.startsWith("https") == false) {
 					alert("http 또는 https로 시작하는 주소를 입력하세요.")
 					return;
 				}
@@ -97,16 +98,18 @@
 				
 				// ajax
 				$.ajax({
-					type:"get"
+					type:"post"
 					, url:"/lesson06/quiz02/is_duplication"
 					, data:{"address":address}
 				
 					, success:function(data) {
 						if (data.is_duplication) {
-							$('#urlStatusArea').append('<span class="text-danger">중복된 url입니다.</span>');
+							$('#urlStatusArea').append('<span class="text-danger">중복된 URL입니다.</span>');
+							// $('#urlStatusArea').removeClass('d-none');
+							// $('#urlStatusArea2').addClass('d-none');
 							return;
 						} else {
-							$('#urlStatusArea').append('<span class="text-primary">저장 가능한 url입니다.</span>');
+							$('#urlStatusArea').append('<span class="text-primary">저장 가능한 URL입니다.</span>');
 						}
 					}
 					, error:function(e) {

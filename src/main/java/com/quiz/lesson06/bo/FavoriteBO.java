@@ -21,11 +21,15 @@ public class FavoriteBO {
 		return favoriteDAO.selectBookmarkList();
 	}
 	
-	public boolean existBookmarkByAddress(String address) {
+	public Favorite existBookmarkByAddress(String address) {
 		return favoriteDAO.existBookmarkByAddress(address);
 	}
 	
 	public void deleteBookmark(int id) {
 		favoriteDAO.deleteBookmark(id);
+	}
+	
+	public int deleteFavoriteById(int id) {
+		return favoriteDAO.deleteFavoriteById(id);
 	}
 }
