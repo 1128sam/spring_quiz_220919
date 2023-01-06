@@ -24,4 +24,8 @@ public class FavoriteBO {
 	public boolean existBookmarkByAddress(String address) {
 		return favoriteDAO.existBookmarkByAddress(address);
 	}
+	
+	public void deleteBookmark(int id) {
+		favoriteDAO.deleteBookmark(id);
+	}
 }

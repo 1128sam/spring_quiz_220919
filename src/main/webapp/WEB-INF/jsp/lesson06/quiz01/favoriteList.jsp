@@ -43,16 +43,23 @@
 			<tr>
 				<td>${status.count}</td>
 				<td>${bookmark.name}</td>
-				<td>
-					<a href="${bookmark.address}">${bookmark.address}</a>
-					<div class="d-flex justify-content-end m-4">
-						<input type="button" class="btn btn-danger" value="삭제">
-					</div>
+				<td class="d-flex">
+						<span class="mr-5"><a href="${bookmark.address}">${bookmark.address}</a></span>
+						<div class="d-flex justify-content-end bg-secondary">
+							<input type="button" class="btn btn-danger" id="${bookmark.id}" value="삭제">
+						</div>
 				</td>
 			</tr>
 		</c:forEach>
 		</tbody>
 	</table>
 </div>
+<script>
+	$(document).ready(function() {
+		$('').on('click', function() {
+			
+		});
+	});
+</script>
 </body>
 </html>

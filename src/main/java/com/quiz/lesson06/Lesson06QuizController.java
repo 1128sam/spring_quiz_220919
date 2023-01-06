@@ -55,12 +55,19 @@ public class Lesson06QuizController {
 		model.addAttribute("bookmarkList", bookmarkList);
 		return "lesson06/quiz01/favoriteList";
 	}
-	
+
+	// http://localhost:8080/lesson06/quiz02/is_duplication?address="https://naver.com"
 	@ResponseBody
 	@GetMapping("/quiz02/is_duplication")
 	public Map<String, Boolean> isDuplication(@RequestParam("address") String address) {
 		Map<String, Boolean> result = new HashMap<>();
 		result.put("is_duplication", favoriteBO.existBookmarkByAddress(address));
 		return result;
+	}
+
+	@GetMapping("/quiz02/delete_view")
+	public String deleteById(@RequestParam("address") int id) {
+		favoriteBO.deleteBookmark(id);
+		return "lesson06/quiz01/favoriteList";
 	}
 }
