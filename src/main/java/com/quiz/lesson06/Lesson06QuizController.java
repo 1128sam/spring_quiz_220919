@@ -1,10 +1,12 @@
 package com.quiz.lesson06;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -120,5 +122,25 @@ public class Lesson06QuizController {
 	@GetMapping("/quiz03/add_register_view")
 	public String addRegisterView() {
 		return "lesson06/quiz03/registerPage";
+	}
+	
+	@ResponseBody
+	@PostMapping("/quiz03/add_register")
+	public String addRegister(Booking booking) {
+		bookingBO.addRegister(booking);
+		return "즐겨찾기 추가가 완료되었습니다.";
+	}
+	
+	// http://localhost:8080/lesson06/quiz03/check_register_view
+	@GetMapping("/quiz03/check_register_view")
+	public String checkRegisterView() {
+		return "lesson06/quiz03/registerCheck";
+	}
+	
+	@ResponseBody
+	@PostMapping("/quiz03/check_register")
+	public Booking checkRegister(@RequestParam("name") String name, @RequestParam("phoneNumber") String phoneNumber) {
+		Booking booking = bookingBO.checkRegister(name, phoneNumber);
+		return booking;
 	}
 }
