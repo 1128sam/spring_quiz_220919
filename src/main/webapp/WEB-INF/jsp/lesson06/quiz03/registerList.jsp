@@ -55,13 +55,15 @@
 					<td>${register.day}</td>
 					<td>${register.headcount}</td>
 					<td>${register.phoneNumber}</td>
-						<c:if test="${register.state eq '대기중'}">
+					<c:choose>	
+						<c:when test="${register.state eq '대기중'}">
 							<td class="text-info">${register.state}</td>
-						</c:if>
-						<c:if test="${register.state eq '확정'}">
+						</c:when>
+						<c:when test="${register.state eq '확정'}">
 							<td class="text-success">${register.state}</td>
-						</c:if>
-					<td><button class="btn btn-danger">삭제</button></td>
+						</c:when>
+					</c:choose>
+					<td><button type="button" class="del-btn btn btn-danger" data-booking-id="${register.id}">삭제</button></td>
 				</tr>
 				</c:forEach>
 			</tbody>
@@ -71,5 +73,32 @@
 		<jsp:include page="booking_footer.jsp" />
 	</footer>
 </div>
+
+<script>
+	$(document).ready(function() {
+		$('.del-btn').on('click', function() {
+			let id = $(this).data('booking-id');
+			
+			$.ajax({
+				// request
+				type:"DELETE"
+				, url:"/lesson06/quiz03/delete_booking"
+				, data:{"id":id}
+				
+				// response
+				, success:function(data) {
+					if (data.code == 1) {
+						document.location.reload(true);
+					} else if (data.code == 500) {
+						alert(data.error_message);
+					}
+				}
+				, error:function(e) {
+					alert("삭제하는데 통신이 실패했습니다. " + e);
+				}
+			});
+		});
+	});
+</script>
 </body>
 </html>

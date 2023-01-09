@@ -57,5 +57,16 @@
 			`booking`
 		WHERE
 			`name` = #{name}
+			AND `phoneNumber` = #{phoneNumber}
+		ORDER BY `id` DESC
+		LIMIT 1
 	</select>
+	
+	<delete id="deleteRegister" parameterType="int">
+		DELETE
+		FROM
+			`booking`
+		WHERE
+			`id` = #{id}
+	</delete>
 </mapper>

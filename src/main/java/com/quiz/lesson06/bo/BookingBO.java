@@ -22,6 +22,10 @@ public class BookingBO {
 		bookingDAO.insertRegister(booking);
 	}
 	
+	public int deleteRegister(int id) {
+		return bookingDAO.deleteRegister(id);
+	}
+	
 	public Booking checkRegister(String name, String phoneNumber) {
 		return bookingDAO.checkRegister(name, phoneNumber);
 	}

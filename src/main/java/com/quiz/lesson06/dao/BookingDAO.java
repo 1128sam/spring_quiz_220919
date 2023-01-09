@@ -13,5 +13,7 @@ public interface BookingDAO {
 	
 	public void insertRegister(Booking booking);
 	
+	public int deleteRegister(int id);
+	
 	public Booking checkRegister(@Param("name") String name, @Param("phoneNumber") String phoneNumber);
 }

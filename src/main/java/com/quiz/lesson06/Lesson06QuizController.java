@@ -1,12 +1,14 @@
 package com.quiz.lesson06;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -112,7 +114,7 @@ public class Lesson06QuizController {
 		model.addAttribute("bookingList", bookingList);
 		return "lesson06/quiz03/registerList";
 	}
-	
+
 //	@GetMapping("/quiz01/after_add_favorite_view")
 //	public String afterAddFavoriteView() {
 //		return "lesson06/quiz01/afterAddFavoriteView";
@@ -123,24 +125,49 @@ public class Lesson06QuizController {
 	public String addRegisterView() {
 		return "lesson06/quiz03/registerPage";
 	}
-	
+
 	@ResponseBody
 	@PostMapping("/quiz03/add_register")
 	public String addRegister(Booking booking) {
 		bookingBO.addRegister(booking);
-		return "즐겨찾기 추가가 완료되었습니다.";
+		return "예약되었습니다.";
 	}
-	
+
+	// 삭제 AJAX 통신 요청
+	@ResponseBody
+	@DeleteMapping("/quiz03/delete_booking")
+	public Map<String, Object> deleteBooking(@RequestParam("id") int id) {
+		Map<String, Object> result = new HashMap<>();
+		int row = bookingBO.deleteRegister(id);
+		if (row > 0) {
+			result.put("code", 1);
+			result.put("result", "성공");
+		} else {
+			result.put("code", 500);
+			result.put("result", "실패");
+			result.put("error_message", "삭제하는데 실패했습니다.");
+		}
+		return result;
+	}
+
 	// http://localhost:8080/lesson06/quiz03/check_register_view
 	@GetMapping("/quiz03/check_register_view")
 	public String checkRegisterView() {
 		return "lesson06/quiz03/registerCheck";
 	}
-	
+
 	@ResponseBody
 	@PostMapping("/quiz03/check_register")
-	public Booking checkRegister(@RequestParam("name") String name, @RequestParam("phoneNumber") String phoneNumber) {
+	public Map<String, Object> checkRegister(@RequestParam("name") String name, @RequestParam("phoneNumber") String phoneNumber) throws ParseException {
 		Booking booking = bookingBO.checkRegister(name, phoneNumber);
-		return booking;
+		
+		Map<String, Object> result = new HashMap<>();
+		if (booking != null) {
+			result.put("booking", booking);
+			result.put("code", 1);
+		} else {
+			result.put("code", 500);
+		}
+		return result;
 	}
 }

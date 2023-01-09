@@ -41,11 +41,11 @@
                     <div id="nonMemberInputBox">
                         <div class="d-flex justify-content-end mr-4">
                             <label class="subject" for="name">이름 : </label>
-                            <input type="text" id="name" class="form-control input-form col-8" name="name">
+                            <input type="text" class="form-control input-form col-8" name="name">
                         </div>
                         <div class="d-flex mt-2 justify-content-end mr-4">
                             <label class="subject" for="phoneNumber">전화번호 : </label>
-                            <input type="text" id="phoneNumber" class="form-control input-form col-8" name="phoneNumber">
+                            <input type="text" class="form-control input-form col-8" name="phoneNumber">
                         </div>
 
                         <div class="text-right mt-2 mr-4">
@@ -68,8 +68,8 @@
         <script>
         $(document).ready(function() {
         	$('#checkBtn').on('click', function() {
-        		let name = $('#name').val().trim();
-        		let phoneNumber = $('#phoneNumber').val().trim();
+        		let name = $('input[name=name]').val().trim();
+        		let phoneNumber = $('input[name=phoneNumber]').val().trim();
         		if (name.length < 1) {
 					alert("예약자 이름을 입력하세요.");
 					return;
@@ -87,11 +87,17 @@
 					type:"POST"
 					, url:"/lesson06/quiz03/check_register"
 					, data:{"name":name, "phoneNumber":phoneNumber}
-					
+
 					// Response
 					, success:function(data) {
-						alert("이름: " + data.name + "\n날짜 : " + data.date + "\n일수 : " + data.day + "\n인원 : " + data.headcount + "\n상태 : " + data.status);
-						location.href = "/lesson06/quiz03/check_register_view";
+						if (data.code == 1) {
+							let message = "이름: " + data.booking.name + "\n날짜 : " + data.booking.date.slice(0,10) + "\n일수 : " + data.booking.day + "\n인원 : " + data.booking.headcount + "\n상태 : " + data.booking.state;
+							alert(message);
+							// alert(data.booking.name);
+							location.href = "/lesson06/quiz03/check_register_view";
+						} else {
+							alert("조회 내역이 없습니다.");
+						}
 					}
 					, error:function(e) {
 						alert("error" + e);
@@ -108,7 +114,7 @@
                 if (currentIndex > bannerArr.length) {
                     currentIndex = 0;
                 }
-            }, 3000);
+            }, 15000);
         });
         </script>
 </body>
